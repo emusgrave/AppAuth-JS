@@ -24,6 +24,7 @@ export interface AuthorizationServiceConfigurationJson {
   revocation_endpoint: string;
   end_session_endpoint?: string;
   userinfo_endpoint?: string;
+  jwks_uri?: string;
 }
 
 /**
@@ -49,6 +50,7 @@ export class AuthorizationServiceConfiguration {
   revocationEndpoint: string;
   userInfoEndpoint?: string;
   endSessionEndpoint?: string;
+  jwksUri?: string;
 
   constructor(request: AuthorizationServiceConfigurationJson) {
     this.authorizationEndpoint = request.authorization_endpoint;
@@ -56,6 +58,7 @@ export class AuthorizationServiceConfiguration {
     this.revocationEndpoint = request.revocation_endpoint;
     this.userInfoEndpoint = request.userinfo_endpoint;
     this.endSessionEndpoint = request.end_session_endpoint;
+    this.jwksUri = request.jwks_uri;
   }
 
   toJson() {
@@ -64,7 +67,8 @@ export class AuthorizationServiceConfiguration {
       token_endpoint: this.tokenEndpoint,
       revocation_endpoint: this.revocationEndpoint,
       end_session_endpoint: this.endSessionEndpoint,
-      userinfo_endpoint: this.userInfoEndpoint
+      userinfo_endpoint: this.userInfoEndpoint,
+      jwks_uri: this.jwksUri
     };
   }
 
